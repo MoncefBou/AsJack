@@ -121,6 +121,7 @@ class Table extends React.Component {
   }
 
   transformCardIntoInt(cardValue) {
+    console.log('cardValue dans la fonction transformCardIntoInt', cardValue)
     if (cardValue === "K" || cardValue === "Q" || cardValue === "J" || cardValue === "A" || cardValue === "0") {
       cardValue = "10"
     }
@@ -131,7 +132,8 @@ class Table extends React.Component {
   startGame = () => {
     const cardSelected = this.rndCarte()
     const cardSelected2 = this.rndCarte()
-
+    console.log ('cardSelected int startGame', cardSelected)
+    console.log ('cardSelected2 int startGame', cardSelected2)
     const valueCarte = this.transformCardIntoInt(cardSelected.split("")[0])
     const valueCarte2 = this.transformCardIntoInt(cardSelected2.split("")[0])
 

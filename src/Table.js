@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from './componant/button/Button.jsx'
-import Cartes from "./componant/carte/Cartes";
-import Game from './componant/Play/Game.jsx'
+import Button from './components/Button.jsx'
+import Cartes from "./views/Cartes";
+import Game from './views/Game.jsx'
 
 const cardArray = [
   "KS", "QS", "JS", "AS", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "0S",
@@ -11,38 +11,33 @@ const cardArray = [
   "KH", "QH", "JH", "AH", "2H", "3H", "4H", "5H", "6H", "7H", "8H", "9H", "0H",
   "KC", "QC", "JC", "AC", "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "0C"];
 
-// const min = 0
-// const cardCount = 52
 
-// let rndNum = 0
-// let temp = ""
-let arrayLength = 0
-let rndCarteTemp = "";
-let rndNumTemp = 0;
-class Table extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      counterPlayer: 0,
-      counterDealer: 0,
-      playerCardList: [],
-      dealerCardList: [],
-      startGame: false,
-      premierLance: "yes",
-      endGame: false,
-      nameOfWinner: ""
+  
+  class Table extends React.Component {
+    constructor() {
+      super();
+      
+      this.state = {
+        counterPlayer: 0,
+        counterDealer: 0,
+        playerCardList: [],
+        dealerCardList: [],
+        startGame: false,
+        premierLance: "yes",
+        endGame: false,
+        nameOfWinner: ""
+      }
     }
-  }
+    
 
-  rndCarte() {
-    arrayLength = + this.state.playerCardList.length;
+    rndCarte() {
+      let arrayLength = + this.state.playerCardList.length;
 
-    rndNumTemp = Math.floor(Math.random() * 53);
+    let rndNumTemp = Math.floor(Math.random() * 53);
 
     if (rndNumTemp > 52) { rndNumTemp = rndNumTemp - 10 } else if (rndNumTemp < 1) { rndNumTemp = rndNumTemp + 10 }
 
-    rndCarteTemp = cardArray[rndNumTemp - 1];
+    let rndCarteTemp = cardArray[rndNumTemp - 1];
 
     return rndCarteTemp
   }

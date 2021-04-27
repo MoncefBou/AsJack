@@ -3,13 +3,12 @@ import React from "react";
 
 class Cartes extends React.Component {
 
-
   render() {
     return (
-      <div className="cartes">
+      <div style={{height: "150px"}} className="cartes">
         {this.props.cardList.map(
           function (carteFaceValue) {
-            const url = "https://deckofcardsapi.com/static/img/" + carteFaceValue + "." + "png"
+            const url = "https://deckofcardsapi.com/static/img/" + carteFaceValue + ".png"
             return (
               <img src={url}
                 style={{ height: 150, width: 100 }} />
@@ -19,8 +18,5 @@ class Cartes extends React.Component {
     );
   }
 }
-
-
-
 
 export default Cartes;

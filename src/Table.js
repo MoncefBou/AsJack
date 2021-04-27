@@ -19,9 +19,10 @@ class Table extends React.Component {
       startGame: false,
       endGame: false,
       nameOfWinner: "",
-      onStop: false,
       blackJack: false
     }
+
+    this.restartGame = this.restartGame.bind(this);
   }
 
   // Lorsque l'on appuie sur le bouton Stop ça génére les cartes du dealer,
@@ -139,6 +140,22 @@ class Table extends React.Component {
     }
   }
 
+  restartGame () {
+
+    this.setState({
+      counterPlayer: 0,
+      counterDealer: 0,
+      playerCardList: [],
+      dealerCardList: [],
+      endGame: false,
+      nameOfWinner: "",
+      blackJack: false
+    })
+
+    this.startGame()
+
+  }
+
   // L'affichage lorsque le jeu démarre
   renderGame() {
     return (
@@ -158,7 +175,7 @@ class Table extends React.Component {
 
         <Cartes key={"player"} cardList={this.state.playerCardList} />
 
-        {this.state.onStop ? <div></div> : <div className=" divButton row col-6 offset-3 flex d-flex justify-content-between">
+        {this.state.endGame? <div className="d-flex justify-content-center"><Button onClick={this.restartGame} bcolor="#0000007a"> Restart </Button></div> : <div className=" divButton row col-6 offset-3 flex d-flex justify-content-between">
 
           <Button onClick={this.onClickGive} bcolor="#0d6efd"> Give </Button>
           <Button onClick={this.onClickStop} bcolor="#dc3545"> Stop </Button>

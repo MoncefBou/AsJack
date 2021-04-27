@@ -1,4 +1,5 @@
 import React from "react";
+import "../components/style/StartGame.css";
 
 class StartGame extends React.Component {
   render() {
@@ -6,7 +7,7 @@ class StartGame extends React.Component {
       <div className='game'>
         <h1>Black Jack</h1>
         <div>
-          <button type="button" className="btn btn-outline-warning rounded-pill" style={{ height: '100px', width: '200px', fontSize: '2em' }} onClick={this.props.startGame}>Start</button>
+          <button type="button" className=" buttonToStart btn btn-outline-warning rounded-pill" onClick={this.props.startGame}>Start</button>
         </div>
       </div>
     );

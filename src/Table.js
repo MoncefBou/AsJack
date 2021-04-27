@@ -142,13 +142,13 @@ class Table extends React.Component {
   // L'affichage lorsque le jeu démarre
   renderGame() {
     return (
-      <div className="playGame" style={{ height: '100vh', position: 'relative' }}>
+      <div className="playGame">
 
-        <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
+        <h1>Black Jack</h1>
 
         <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
 
-        <div style={{ height: "96px" }}>
+        <div className="titleEndGame">
           { this.state.blackJack ? <div className='winlost'>
             <h1>You win with Black jack !!!</h1> </div> :  this.state.counterPlayer > 21 ? <div className='winlost'>
             <h1>You lose !</h1> </div> : this.state.endGame && (<div className='winlost'>
@@ -158,13 +158,12 @@ class Table extends React.Component {
 
         <Cartes key={"player"} cardList={this.state.playerCardList} />
 
-        {this.state.onStop ? <div></div> : <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
+        {this.state.onStop ? <div></div> : <div className=" divButton row col-6 offset-3 flex d-flex justify-content-between">
 
           <Button onClick={this.onClickGive} bcolor="#0d6efd"> Give </Button>
           <Button onClick={this.onClickStop} bcolor="#dc3545"> Stop </Button>
         </div>}
       </div>
-
     )
   }
 

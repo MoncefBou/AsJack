@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from './components/Button.jsx'
 import Cartes from "./views/Cartes";
 import StartGame from './views/StartGame.jsx';
-import {rndCarte, transformCardIntoInt} from "./utils/cardsUtils";
+import { rndCarte, transformCardIntoInt } from "./utils/cardsUtils";
 
 class Table extends React.Component {
 
@@ -125,10 +125,12 @@ class Table extends React.Component {
 
         <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
 
-        {this.state.endGame && (<div className='winlost'>
-          <h1>Winner is {this.state.nameOfWinner}</h1>
-        </div>)}
-
+        <div style={{ height: "96px" }}>
+          {this.state.endGame && (<div className='winlost'>
+            <h1>Winner is {this.state.nameOfWinner}</h1>
+          </div>)}
+        </div>
+        
         <Cartes key={"player"} cardList={this.state.playerCardList} />
 
         <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
@@ -151,9 +153,9 @@ class Table extends React.Component {
     } else {
       return (
         <>
-        {this.renderGame()}
+          {this.renderGame()}
         </>
-        )
+      )
     }
   }
 }

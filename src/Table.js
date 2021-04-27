@@ -19,7 +19,8 @@ class Table extends React.Component {
       startGame: false,
       endGame: false,
       nameOfWinner: "",
-      onStop: false
+      onStop: false,
+      blackJack: false
     }
   }
 
@@ -121,11 +122,21 @@ class Table extends React.Component {
 
     const firstTwoCardsPlayer = [cardSelected, cardSelected2]
 
-    this.setState({
-      counterPlayer: firstPlayerValue,
-      playerCardList: firstTwoCardsPlayer,
-      startGame: true
-    })
+    if (firstPlayerValue === 21) {
+      this.setState({
+        counterPlayer: firstPlayerValue,
+        playerCardList: firstTwoCardsPlayer,
+        startGame: true,
+        endGame: true,
+        blackJack: true
+      })
+    } else {
+      this.setState({
+        counterPlayer: firstPlayerValue,
+        playerCardList: firstTwoCardsPlayer,
+        startGame: true
+      })
+    }
   }
 
   // L'affichage lorsque le jeu démarre
@@ -138,10 +149,11 @@ class Table extends React.Component {
         <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
 
         <div style={{ height: "96px" }}>
-          {this.state.counterPlayer > 21 ? <div className='winlost'>
+          { this.state.blackJack ? <div className='winlost'>
+            <h1>You win with Black jack !!!</h1> </div> :  this.state.counterPlayer > 21 ? <div className='winlost'>
             <h1>You lose !</h1> </div> : this.state.endGame && (<div className='winlost'>
-            <h1>Winner is {this.state.nameOfWinner}</h1>
-          </div>)}
+              <h1>Winner is {this.state.nameOfWinner}</h1>
+            </div>)}
         </div>
 
         <Cartes key={"player"} cardList={this.state.playerCardList} />

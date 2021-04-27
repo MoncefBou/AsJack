@@ -18,7 +18,8 @@ class Table extends React.Component {
       dealerCardList: [],
       startGame: false,
       endGame: false,
-      nameOfWinner: ""
+      nameOfWinner: "",
+      onStop: false
     }
   }
 
@@ -81,7 +82,8 @@ class Table extends React.Component {
       counterDealer: dealerValue,
       dealerCardList: cardsDealer,
       nameOfWinner: endGameAndWinner.nameOfWinner,
-      endGame: endGameAndWinner.endGame
+      endGame: endGameAndWinner.endGame,
+      onStop: true
     })
   }
 
@@ -144,12 +146,11 @@ class Table extends React.Component {
 
         <Cartes key={"player"} cardList={this.state.playerCardList} />
 
-        <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
+        {this.state.onStop ? <div></div> : <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
 
           <Button onClick={this.onClickGive} bcolor="#0d6efd"> Give </Button>
-
           <Button onClick={this.onClickStop} bcolor="#dc3545"> Stop </Button>
-        </div>
+        </div>}
       </div>
 
     )

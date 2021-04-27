@@ -87,14 +87,24 @@ class Table extends React.Component {
 
   // Lorsque l'on appuie sur le boutton Give ça donne une carte au player
   onClickGive = () => {
+
     const cardSelected = rndCarte()
     const valueCarte = transformCardIntoInt(cardSelected.split("")[0])
     const totalPlayerValue = this.state.counterPlayer + valueCarte
 
-    this.setState({
-      counterPlayer: totalPlayerValue,
-      playerCardList: [...this.state.playerCardList, cardSelected]
-    })
+    if (totalPlayerValue > 21) {
+      this.setState({
+        nameOfWinner: "Dealer",
+        endGame: true,
+        counterPlayer: totalPlayerValue,
+        playerCardList: [...this.state.playerCardList, cardSelected]
+      })
+    } else {
+      this.setState({
+        counterPlayer: totalPlayerValue,
+        playerCardList: [...this.state.playerCardList, cardSelected]
+      })
+    }
   }
 
   // Lorsque l'on appuie sur le boutton Start, cette méthode tire 2 cartes pour le player et lance le jeu.
@@ -126,11 +136,12 @@ class Table extends React.Component {
         <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
 
         <div style={{ height: "96px" }}>
-          {this.state.endGame && (<div className='winlost'>
+          {this.state.counterPlayer > 21 ? <div className='winlost'>
+            <h1>You lose !</h1> </div> : this.state.endGame && (<div className='winlost'>
             <h1>Winner is {this.state.nameOfWinner}</h1>
           </div>)}
         </div>
-        
+
         <Cartes key={"player"} cardList={this.state.playerCardList} />
 
         <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
